@@ -3,30 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kanban Premium</title>
+  <title>Kanban Premium V3</title>
   <style>
     :root {
-      --bg: #f6f8fb;
-      --bg-soft: #eef2f7;
-      --panel: rgba(255, 255, 255, 0.88);
-      --panel-strong: #ffffff;
-      --line: #e5eaf2;
-      --line-strong: #d6deea;
-      --text: #172033;
-      --text-soft: #5f6b85;
-      --text-faint: #8b97ad;
-      --primary: #4c7cf3;
-      --primary-soft: rgba(76, 124, 243, 0.12);
-      --success: #12b981;
+      --bg: #f7f8fc;
+      --bg-soft: #f1f4fa;
+      --surface: #ffffff;
+      --surface-soft: #fbfcfe;
+      --surface-muted: #f8faff;
+      --line: #e7ebf3;
+      --line-strong: #d8e0ec;
+      --text: #182033;
+      --text-soft: #667089;
+      --text-faint: #8d97ad;
+
+      --primary: #5b7cf7;
+      --primary-hover: #4f71ef;
+      --primary-soft: rgba(91, 124, 247, 0.10);
+
+      --success: #17b26a;
+      --success-soft: rgba(23, 178, 106, 0.12);
+
       --warning: #f59e0b;
-      --danger: #ef4444;
-      --shadow-lg: 0 18px 45px rgba(17, 24, 39, 0.08);
-      --shadow-md: 0 10px 24px rgba(17, 24, 39, 0.06);
-      --shadow-sm: 0 4px 12px rgba(17, 24, 39, 0.05);
-      --radius-xl: 24px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
+      --warning-soft: rgba(245, 158, 11, 0.12);
+
+      --danger: #e5484d;
+      --danger-soft: rgba(229, 72, 77, 0.10);
+
+      --shadow-xs: 0 2px 8px rgba(16, 24, 40, 0.04);
+      --shadow-sm: 0 6px 18px rgba(16, 24, 40, 0.05);
+      --shadow-md: 0 16px 40px rgba(16, 24, 40, 0.07);
+      --shadow-lg: 0 24px 54px rgba(16, 24, 40, 0.08);
+
+      --radius-xl: 26px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --radius-xs: 10px;
+
       --transition: 0.22s ease;
     }
 
@@ -40,9 +54,8 @@
       min-height: 100%;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(76, 124, 243, 0.10), transparent 22%),
-        radial-gradient(circle at right top, rgba(16, 185, 129, 0.08), transparent 18%),
-        linear-gradient(180deg, #f8fafc 0%, #f3f6fb 100%);
+        radial-gradient(circle at top left, rgba(91, 124, 247, 0.06), transparent 18%),
+        linear-gradient(180deg, #fafbfe 0%, #f5f7fb 100%);
       color: var(--text);
     }
 
@@ -55,96 +68,93 @@
     }
 
     .app-shell {
-      padding: 22px;
+      padding: 18px;
     }
 
     .app {
-      max-width: 1600px;
+      max-width: 1680px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 22px;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
       align-items: start;
     }
 
     .sidebar,
     .main-panel {
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(255,255,255,0.8);
       box-shadow: var(--shadow-lg);
-      border-radius: var(--radius-xl);
+      border-radius: 28px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .sidebar {
-      padding: 20px;
+      padding: 18px;
       position: sticky;
-      top: 20px;
+      top: 18px;
     }
 
-    .brand {
+    .main-panel {
+      padding: 22px;
+      min-height: calc(100vh - 36px);
+      overflow: hidden;
+    }
+
+    .brand-minimal {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .badge {
+    .brand-badge {
       display: inline-flex;
       align-items: center;
-      width: fit-content;
-      gap: 8px;
-      padding: 8px 12px;
+      gap: 9px;
+      padding: 10px 14px;
       border-radius: 999px;
       background: var(--primary-soft);
       color: var(--primary);
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.94rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
     }
 
-    .badge::before {
+    .brand-badge::before {
       content: "";
       width: 8px;
       height: 8px;
-      border-radius: 50%;
+      border-radius: 999px;
       background: var(--primary);
-    }
-
-    .brand h1 {
-      margin: 0;
-      font-size: 1.9rem;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-    }
-
-    .brand p {
-      margin: 0;
-      color: var(--text-soft);
-      font-size: 0.98rem;
-      line-height: 1.55;
+      box-shadow: 0 0 0 5px rgba(91, 124, 247, 0.08);
     }
 
     .side-section {
-      margin-top: 22px;
+      margin-top: 20px;
     }
 
     .side-title {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
       margin-bottom: 12px;
-      font-size: 0.92rem;
+      font-size: 0.82rem;
       font-weight: 800;
-      letter-spacing: 0.01em;
-      color: var(--text-soft);
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
     .project-list {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .project-item {
@@ -152,32 +162,40 @@
       align-items: center;
       gap: 8px;
       width: 100%;
-      padding: 12px;
-      border-radius: 14px;
-      background: #fff;
+      padding: 10px;
+      border-radius: 16px;
+      background: var(--surface);
       border: 1px solid transparent;
+      box-shadow: var(--shadow-xs);
       transition: var(--transition);
-      box-shadow: var(--shadow-sm);
     }
 
     .project-item:hover {
-      border-color: var(--line-strong);
       transform: translateY(-1px);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-sm);
     }
 
     .project-item.active {
-      border-color: rgba(76, 124, 243, 0.35);
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border-color: rgba(91, 124, 247, 0.26);
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+      box-shadow: 0 10px 22px rgba(91, 124, 247, 0.08);
     }
 
     .project-main-btn {
       flex: 1;
+      min-width: 0;
       border: none;
       background: transparent;
       text-align: left;
-      padding: 0;
+      padding: 0 6px;
       color: var(--text);
-      font-weight: 700;
+      font-weight: 750;
+      font-size: 1rem;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .icon-btn,
@@ -187,46 +205,49 @@
     }
 
     .icon-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
       background: #fff;
       color: var(--text-soft);
       border: 1px solid var(--line);
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .icon-btn:hover {
-      background: #f9fbff;
-      border-color: var(--line-strong);
+      background: #fbfcff;
       color: var(--text);
+      border-color: var(--line-strong);
       transform: translateY(-1px);
     }
 
     .icon-btn.danger:hover {
       color: var(--danger);
-      border-color: rgba(239, 68, 68, 0.22);
-      background: rgba(239, 68, 68, 0.04);
+      border-color: rgba(229, 72, 77, 0.18);
+      background: rgba(229, 72, 77, 0.04);
     }
 
     .btn {
-      min-height: 44px;
-      border-radius: 12px;
+      min-height: 46px;
+      border-radius: 14px;
       padding: 0 16px;
-      font-weight: 700;
+      font-weight: 780;
+      letter-spacing: -0.01em;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #4c7cf3, #6994ff);
+      background: linear-gradient(135deg, var(--primary), #7290fb);
       color: white;
-      box-shadow: 0 12px 26px rgba(76, 124, 243, 0.24);
+      box-shadow: 0 14px 28px rgba(91, 124, 247, 0.22);
     }
 
     .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-hover), #6786fa);
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(76, 124, 243, 0.28);
+      box-shadow: 0 16px 32px rgba(91, 124, 247, 0.25);
     }
 
     .btn-secondary {
@@ -236,7 +257,7 @@
     }
 
     .btn-secondary:hover {
-      background: #f9fbff;
+      background: #fbfcff;
       border-color: var(--line-strong);
     }
 
@@ -247,14 +268,14 @@
 
     .btn-danger:hover {
       transform: translateY(-1px);
-      opacity: 0.94;
+      opacity: 0.96;
     }
 
     .input,
     .textarea,
     .select {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--line);
       background: #fff;
       color: var(--text);
@@ -264,15 +285,15 @@
     }
 
     .textarea {
-      min-height: 96px;
+      min-height: 100px;
       resize: vertical;
     }
 
     .input:focus,
     .textarea:focus,
     .select:focus {
-      border-color: rgba(76, 124, 243, 0.55);
-      box-shadow: 0 0 0 4px rgba(76, 124, 243, 0.10);
+      border-color: rgba(91, 124, 247, 0.55);
+      box-shadow: 0 0 0 4px rgba(91, 124, 247, 0.10);
     }
 
     .form-stack {
@@ -280,65 +301,95 @@
       gap: 10px;
     }
 
-    .small-muted {
+    .helper {
       font-size: 0.88rem;
-      color: var(--text-faint);
       line-height: 1.45;
+      color: var(--text-faint);
     }
 
     .stats-grid {
       display: grid;
-      grid-template-columns: 1fr;
       gap: 10px;
     }
 
     .stat-card {
-      background: #fff;
       border: 1px solid var(--line);
-      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+      border-radius: 18px;
       padding: 14px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-xs);
     }
 
     .stat-label {
       color: var(--text-faint);
-      font-size: 0.86rem;
+      font-size: 0.82rem;
       margin-bottom: 6px;
     }
 
     .stat-value {
-      font-weight: 800;
-      font-size: 1.35rem;
+      font-weight: 850;
+      font-size: 1.32rem;
+      line-height: 1.1;
       letter-spacing: -0.03em;
+      word-break: break-word;
     }
 
-    .main-panel {
-      padding: 20px;
-      min-height: calc(100vh - 44px);
-      overflow: hidden;
-    }
-
-    .topbar {
+    .main-header {
       display: flex;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
       align-items: flex-start;
       margin-bottom: 18px;
     }
 
-    .topbar-left h2 {
+    .main-header-left {
+      min-width: 0;
+    }
+
+    .main-header-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .main-title {
       margin: 0;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      font-weight: 860;
     }
 
-    .topbar-left p {
-      margin: 8px 0 0;
+    .main-subtitle {
+      margin-top: 8px;
       color: var(--text-soft);
+      font-size: 1rem;
     }
 
-    .topbar-actions {
+    .project-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .project-chip::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .main-header-actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
@@ -347,26 +398,33 @@
 
     .toolbar {
       display: grid;
-      grid-template-columns: 1fr auto auto;
+      grid-template-columns: 1fr auto;
       gap: 12px;
       align-items: center;
       margin-bottom: 20px;
       padding: 14px;
       border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.82);
-      box-shadow: var(--shadow-sm);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(251,252,255,0.96));
+      box-shadow: var(--shadow-xs);
     }
 
-    .toolbar-group {
+    .toolbar-left,
+    .toolbar-right {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .toolbar .search-input {
+      min-height: 48px;
+      padding-left: 16px;
     }
 
     .board {
       display: flex;
-      gap: 18px;
+      gap: 16px;
       align-items: flex-start;
       overflow-x: auto;
       padding-bottom: 10px;
@@ -383,28 +441,28 @@
     }
 
     .column {
-      min-width: 320px;
-      max-width: 320px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(251,252,255,0.96));
+      min-width: 330px;
+      max-width: 330px;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfdff 100%);
       border: 1px solid var(--line);
-      border-radius: 22px;
-      box-shadow: var(--shadow-md);
+      border-radius: 24px;
+      box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
-      min-height: 300px;
+      min-height: 320px;
     }
 
     .column-header {
-      padding: 14px 14px 12px;
-      border-bottom: 1px solid #eef2f7;
+      padding: 14px;
+      border-bottom: 1px solid #eff3f8;
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     .column-top {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 10px;
     }
 
@@ -419,31 +477,32 @@
     .column-dot {
       width: 10px;
       height: 10px;
-      border-radius: 50%;
+      border-radius: 999px;
       background: var(--primary);
       flex-shrink: 0;
     }
 
     .column-title {
-      font-weight: 800;
-      min-width: 0;
+      font-size: 1rem;
+      font-weight: 820;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .task-count {
-      min-width: 32px;
-      height: 32px;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 10px;
       border-radius: 999px;
-      background: #f1f5fb;
+      background: #f2f5fb;
       color: var(--text-soft);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.9rem;
-      padding: 0 10px;
+      flex-shrink: 0;
     }
 
     .column-actions {
@@ -457,23 +516,26 @@
     }
 
     .mini-add-task .input {
-      min-height: 40px;
+      min-height: 42px;
       padding: 10px 12px;
-      font-size: 0.94rem;
+      font-size: 0.95rem;
+      border-radius: 13px;
     }
 
     .mini-add-btn {
+      width: 42px;
       min-width: 42px;
-      min-height: 40px;
-      border-radius: 12px;
+      height: 42px;
+      border-radius: 13px;
+      border: 1px solid rgba(91, 124, 247, 0.08);
       background: var(--primary-soft);
       color: var(--primary);
-      font-weight: 900;
-      border: 1px solid rgba(76, 124, 243, 0.10);
+      font-size: 1.3rem;
+      font-weight: 800;
     }
 
     .mini-add-btn:hover {
-      background: rgba(76, 124, 243, 0.18);
+      background: rgba(91, 124, 247, 0.18);
     }
 
     .column-body {
@@ -481,34 +543,34 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      min-height: 220px;
       flex: 1;
+      min-height: 220px;
       transition: var(--transition);
     }
 
     .column-body.drag-over {
-      background: rgba(76, 124, 243, 0.06);
-      border-radius: 0 0 22px 22px;
+      background: rgba(91, 124, 247, 0.05);
+      border-radius: 0 0 24px 24px;
     }
 
     .task-card {
-      border: 1px solid #ebf0f7;
-      background: #fff;
+      border: 1px solid #ebeff6;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfdff 100%);
       border-radius: 18px;
       padding: 14px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-xs);
       cursor: grab;
       transition: var(--transition);
     }
 
     .task-card:hover {
       transform: translateY(-2px);
-      border-color: #dbe5f3;
-      box-shadow: 0 14px 28px rgba(17, 24, 39, 0.08);
+      border-color: #dbe3ef;
+      box-shadow: var(--shadow-md);
     }
 
     .task-card.dragging {
-      opacity: 0.45;
+      opacity: 0.42;
       transform: rotate(1deg) scale(0.99);
       cursor: grabbing;
     }
@@ -516,73 +578,26 @@
     .task-card-head {
       display: flex;
       justify-content: space-between;
-      gap: 10px;
       align-items: flex-start;
+      gap: 10px;
     }
 
     .task-title {
       margin: 0;
       font-size: 1rem;
-      line-height: 1.35;
-      font-weight: 800;
+      line-height: 1.3;
+      font-weight: 820;
+      letter-spacing: -0.02em;
       word-break: break-word;
     }
 
     .task-desc {
-      margin-top: 8px;
-      font-size: 0.92rem;
+      margin-top: 10px;
       color: var(--text-soft);
-      line-height: 1.48;
+      font-size: 0.93rem;
+      line-height: 1.5;
       white-space: pre-wrap;
       word-break: break-word;
-    }
-
-    .task-meta {
-      margin-top: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      border: 1px solid transparent;
-    }
-
-    .pill.label {
-      background: #eef4ff;
-      color: #3c6de8;
-      border-color: #dbe6ff;
-    }
-
-    .pill.priority-low {
-      background: #eefaf5;
-      color: #0f9f6f;
-      border-color: #d4f3e7;
-    }
-
-    .pill.priority-medium {
-      background: #fff8eb;
-      color: #c07a00;
-      border-color: #fde7b0;
-    }
-
-    .pill.priority-high {
-      background: #fff1f2;
-      color: #d33d58;
-      border-color: #ffd5dc;
-    }
-
-    .pill.date {
-      background: #f4f6fb;
-      color: #556179;
-      border-color: #e4e9f2;
     }
 
     .task-actions {
@@ -592,30 +607,80 @@
     }
 
     .task-actions .icon-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+    }
+
+    .task-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 32px;
+      padding: 0 11px;
+      border-radius: 999px;
+      font-size: 0.79rem;
+      font-weight: 780;
+      border: 1px solid transparent;
+    }
+
+    .pill.label {
+      background: #eef4ff;
+      color: #466de7;
+      border-color: #dce7ff;
+    }
+
+    .pill.priority-low {
+      background: #eef9f3;
+      color: #14945c;
+      border-color: #d3efdf;
+    }
+
+    .pill.priority-medium {
+      background: #fff8e9;
+      color: #bf7d0c;
+      border-color: #f9e4b3;
+    }
+
+    .pill.priority-high {
+      background: #fff2f2;
+      color: #d34349;
+      border-color: #ffd7d8;
+    }
+
+    .pill.date {
+      background: #f4f6fb;
+      color: #59657d;
+      border-color: #e5eaf2;
     }
 
     .empty-state {
       border: 1px dashed #dbe4f1;
-      border-radius: 16px;
-      padding: 18px;
+      border-radius: 18px;
+      padding: 20px;
       background: #fafcff;
-      text-align: center;
       color: var(--text-faint);
+      text-align: center;
       font-size: 0.95rem;
+      line-height: 1.45;
     }
 
     .add-column-card {
-      min-width: 280px;
-      max-width: 280px;
-      border: 1px dashed #d7e1ee;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.62);
+      min-width: 300px;
+      max-width: 300px;
+      border: 1px dashed #d8e1ee;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.7);
       padding: 14px;
+      box-shadow: var(--shadow-xs);
       align-self: flex-start;
-      box-shadow: var(--shadow-sm);
     }
 
     .add-column-card .form-stack {
@@ -625,12 +690,12 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(10, 17, 30, 0.35);
+      background: rgba(15, 23, 42, 0.35);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 999;
       padding: 18px;
+      z-index: 999;
     }
 
     .modal-backdrop.open {
@@ -640,9 +705,9 @@
     .modal {
       width: min(720px, 100%);
       background: #fff;
-      border-radius: 24px;
-      border: 1px solid #edf2f7;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.18);
+      border-radius: 26px;
+      border: 1px solid #edf1f7;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.16);
       overflow: hidden;
     }
 
@@ -680,7 +745,7 @@
 
     .field label {
       font-size: 0.9rem;
-      font-weight: 700;
+      font-weight: 750;
       color: var(--text-soft);
     }
 
@@ -693,10 +758,10 @@
     }
 
     .footer-note {
-      margin-top: 18px;
+      margin-top: 16px;
       text-align: center;
-      color: #9aa6bc;
-      font-size: 0.8rem;
+      color: #98a4ba;
+      font-size: 0.79rem;
       letter-spacing: 0.03em;
     }
 
@@ -710,18 +775,13 @@
       }
     }
 
-    @media (max-width: 860px) {
-      .toolbar {
-        grid-template-columns: 1fr;
-      }
-
-      .topbar {
+    @media (max-width: 880px) {
+      .main-header {
         flex-direction: column;
       }
 
-      .column {
-        min-width: 290px;
-        max-width: 290px;
+      .toolbar {
+        grid-template-columns: 1fr;
       }
 
       .modal-grid {
@@ -734,14 +794,24 @@
         padding: 12px;
       }
 
-      .main-panel,
-      .sidebar {
+      .sidebar,
+      .main-panel {
         padding: 16px;
       }
 
       .column {
-        min-width: calc(100vw - 56px);
-        max-width: calc(100vw - 56px);
+        min-width: calc(100vw - 52px);
+        max-width: calc(100vw - 52px);
+      }
+
+      .main-header-actions,
+      .toolbar-right {
+        width: 100%;
+      }
+
+      .main-header-actions .btn,
+      .toolbar-right .btn {
+        flex: 1;
       }
     }
   </style>
@@ -750,10 +820,8 @@
   <div class="app-shell">
     <div class="app">
       <aside class="sidebar">
-        <div class="brand">
-          <div class="badge">Kanban Premium</div>
-          <h1>Pilotez vos projets avec clarté.</h1>
-          <p>Une base solide, élégante et locale pour gérer plusieurs projets, plusieurs colonnes et des cartes détaillées.</p>
+        <div class="brand-minimal">
+          <div class="brand-badge">Kanban Premium</div>
         </div>
 
         <div class="side-section">
@@ -766,14 +834,11 @@
 
         <div class="side-section">
           <div class="side-title">
-            <span>Créer un projet</span>
+            <span>Nouveau projet</span>
           </div>
           <div class="form-stack">
             <input id="newProjectInput" class="input" type="text" placeholder="Nom du projet..." maxlength="80" />
             <button id="createProjectBtn" class="btn btn-primary" type="button">Ajouter le projet</button>
-          </div>
-          <div class="small-muted" style="margin-top:8px;">
-            Chaque projet possède ses propres colonnes et cartes.
           </div>
         </div>
 
@@ -795,27 +860,34 @@
               <div class="stat-value" id="statTasks">0</div>
             </div>
           </div>
+          <div class="helper" style="margin-top:10px;">
+            Base locale, multi-projets, colonnes dynamiques, cartes détaillées.
+          </div>
         </div>
       </aside>
 
       <main class="main-panel">
-        <div class="topbar">
-          <div class="topbar-left">
-            <h2 id="currentProjectTitle">Mon projet</h2>
-            <p>Ajoute des colonnes, crée des cartes, glisse-dépose et garde tout en local dans ton navigateur.</p>
+        <div class="main-header">
+          <div class="main-header-left">
+            <div class="main-header-title-row">
+              <h1 class="main-title" id="currentProjectTitle">Roadmap produit</h1>
+              <div class="project-chip">Projet actif</div>
+            </div>
+            <div class="main-subtitle">Structure, priorise et fais avancer tes sujets avec une interface plus nette et plus premium.</div>
           </div>
-          <div class="topbar-actions">
-            <button class="btn btn-secondary" id="renameProjectBtn" type="button">Renommer le projet</button>
-            <button class="btn btn-secondary" id="deleteProjectBtn" type="button">Supprimer le projet</button>
+
+          <div class="main-header-actions">
+            <button class="btn btn-secondary" id="renameProjectBtn" type="button">Renommer</button>
+            <button class="btn btn-secondary" id="deleteProjectBtn" type="button">Supprimer</button>
           </div>
         </div>
 
         <div class="toolbar">
-          <input id="searchInput" class="input" type="text" placeholder="Rechercher une carte par titre, description ou label..." />
-          <div class="toolbar-group">
-            <button class="btn btn-secondary" id="clearSearchBtn" type="button">Effacer la recherche</button>
+          <div class="toolbar-left">
+            <input id="searchInput" class="input search-input" type="text" placeholder="Rechercher une carte, un label ou un mot-clé..." />
           </div>
-          <div class="toolbar-group">
+          <div class="toolbar-right">
+            <button class="btn btn-secondary" id="clearSearchBtn" type="button">Effacer</button>
             <button class="btn btn-primary" id="addColumnBtn" type="button">Ajouter une colonne</button>
           </div>
         </div>
@@ -833,6 +905,7 @@
         <h3 id="taskModalTitle">Nouvelle carte</h3>
         <button class="icon-btn" id="closeTaskModalBtn" type="button">✕</button>
       </div>
+
       <div class="modal-body">
         <div class="field">
           <label for="taskTitleInput">Titre</label>
@@ -841,7 +914,7 @@
 
         <div class="field">
           <label for="taskDescriptionInput">Description</label>
-          <textarea id="taskDescriptionInput" class="textarea" placeholder="Ajoute du contexte, des notes, une checklist manuelle, etc."></textarea>
+          <textarea id="taskDescriptionInput" class="textarea" placeholder="Ajoute du contexte, des notes ou une description plus précise."></textarea>
         </div>
 
         <div class="modal-grid">
@@ -870,6 +943,7 @@
           </div>
         </div>
       </div>
+
       <div class="modal-footer">
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <button class="btn btn-danger" id="deleteTaskBtn" type="button" style="display:none;">Supprimer</button>
@@ -883,7 +957,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "kanban-premium-r2bizdev-v2";
+    const STORAGE_KEY = "kanban-premium-v3-r2bizdev";
 
     const DEFAULT_DATA = {
       currentProjectId: "",
@@ -915,8 +989,8 @@
       {
         id: crypto.randomUUID(),
         columnId: DEFAULT_DATA.projects[0].columns[1].id,
-        title: "Créer la V2 du Kanban",
-        description: "Multi-projets, cartes détaillées, colonnes dynamiques, design premium.",
+        title: "Créer la V3 du Kanban",
+        description: "Refonte UX, meilleure hiérarchie, interface plus premium, plus lisible et plus produit.",
         label: "Dev",
         priority: "medium",
         dueDate: ""
@@ -925,7 +999,7 @@
         id: crypto.randomUUID(),
         columnId: DEFAULT_DATA.projects[0].columns[2].id,
         title: "Poser la base UI",
-        description: "Direction Notion x Metabase, sobre, propre et premium.",
+        description: "Direction Notion x Linear x Metabase, avec plus d'air et moins de bruit visuel.",
         label: "Design",
         priority: "low",
         dueDate: ""
@@ -934,7 +1008,6 @@
 
     let store = loadStore();
     let draggedTaskId = null;
-    let draggedFromColumnId = null;
     let editingTaskId = null;
 
     const projectList = document.getElementById("projectList");
@@ -976,18 +1049,20 @@
 
     renameProjectBtn.addEventListener("click", renameCurrentProject);
     deleteProjectBtn.addEventListener("click", deleteCurrentProject);
-
     addColumnBtn.addEventListener("click", addColumnPrompt);
+
     clearSearchBtn.addEventListener("click", () => {
       searchInput.value = "";
       render();
     });
+
     searchInput.addEventListener("input", render);
 
     closeTaskModalBtn.addEventListener("click", closeTaskModal);
     cancelTaskBtn.addEventListener("click", closeTaskModal);
     saveTaskBtn.addEventListener("click", saveTaskFromModal);
     deleteTaskBtn.addEventListener("click", deleteTaskFromModal);
+
     taskModalBackdrop.addEventListener("click", (e) => {
       if (e.target === taskModalBackdrop) closeTaskModal();
     });
@@ -1016,8 +1091,8 @@
           if (!Array.isArray(project.columns) || !project.columns.length) {
             project.columns = [
               { id: crypto.randomUUID(), name: "To Do" },
-              { id: crypto.randomUUID(), name: "Doing" },
-              { id: crypto.randomUUID(), name: "Done" }
+              { id: crypto.randomUUID(), name: "En cours" },
+              { id: crypto.randomUUID(), name: "Terminé" }
             ];
           }
           if (!Array.isArray(project.tasks)) {
@@ -1027,7 +1102,7 @@
 
         return parsed;
       } catch (error) {
-        console.error("Erreur de chargement localStorage :", error);
+        console.error("Erreur de chargement :", error);
         return structuredClone(DEFAULT_DATA);
       }
     }
@@ -1066,8 +1141,8 @@
 
       store.projects.unshift(project);
       store.currentProjectId = project.id;
-      saveStore();
       newProjectInput.value = "";
+      saveStore();
       render();
     }
 
@@ -1152,18 +1227,16 @@
 
       const column = project.columns.find(c => c.id === columnId);
       const tasksInColumn = project.tasks.filter(t => t.columnId === columnId);
+      const fallbackColumn = project.columns.find(c => c.id !== columnId);
 
-      const ok = confirm(
-        `Supprimer la colonne "${column.name}" ?\n\nLes ${tasksInColumn.length} carte(s) seront déplacées dans la première autre colonne disponible.`
-      );
+      const ok = confirm(`Supprimer la colonne "${column.name}" ? Les ${tasksInColumn.length} carte(s) seront déplacées.`);
       if (!ok) return;
 
-      const fallbackColumn = project.columns.find(c => c.id !== columnId);
       project.tasks = project.tasks.map(task =>
         task.columnId === columnId ? { ...task, columnId: fallbackColumn.id } : task
       );
-      project.columns = project.columns.filter(c => c.id !== columnId);
 
+      project.columns = project.columns.filter(c => c.id !== columnId);
       saveStore();
       render();
     }
@@ -1278,12 +1351,11 @@
 
     function deleteTaskFromModal() {
       if (!editingTaskId) return;
+      const project = getCurrentProject();
+      if (!project) return;
 
       const ok = confirm("Supprimer cette carte ?");
       if (!ok) return;
-
-      const project = getCurrentProject();
-      if (!project) return;
 
       project.tasks = project.tasks.filter(task => task.id !== editingTaskId);
       saveStore();
@@ -1326,9 +1398,7 @@
         task.description,
         task.label,
         priorityLabel(task.priority)
-      ]
-        .join(" ")
-        .toLowerCase();
+      ].join(" ").toLowerCase();
 
       return haystack.includes(term);
     }
@@ -1480,13 +1550,11 @@
 
       card.addEventListener("dragstart", () => {
         draggedTaskId = task.id;
-        draggedFromColumnId = task.columnId;
         card.classList.add("dragging");
       });
 
       card.addEventListener("dragend", () => {
         draggedTaskId = null;
-        draggedFromColumnId = null;
         card.classList.remove("dragging");
         document.querySelectorAll(".column-body").forEach(zone => zone.classList.remove("drag-over"));
       });
@@ -1497,7 +1565,6 @@
     function renderBoard() {
       const project = getCurrentProject();
       board.innerHTML = "";
-
       if (!project) return;
 
       const term = searchInput.value.trim().toLowerCase();
@@ -1522,13 +1589,12 @@
         title.className = "column-title";
         title.textContent = column.name;
 
-        const count = document.createElement("div");
-        count.className = "task-count";
-
         const filteredTasks = project.tasks.filter(task =>
           task.columnId === column.id && matchesSearch(task, term)
         );
 
+        const count = document.createElement("div");
+        count.className = "task-count";
         count.textContent = filteredTasks.length;
 
         titleWrap.append(dot, title, count);
